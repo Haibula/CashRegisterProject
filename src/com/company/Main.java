@@ -1,16 +1,15 @@
 package com.company;
 
-import java.awt.*;
-import java.io.*;
-import java.sql.SQLException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.InputStreamReader;
+import java.sql.SQLException;
 
 
 public class Main extends Application {
@@ -22,11 +21,11 @@ public class Main extends Application {
 
     public static void main(String[] args) throws IOException, SQLException, AWTException {
         connectSqlServer.setLocalHostName("localhost");// названиме хоста
-        connectSqlServer.setPortNumber("3306");// порт
+        connectSqlServer.setPortNumber("3307");// порт
         connectSqlServer.setDataBaseName("market"); // выбор базы данных для работы
         connectSqlServer.setLogin("root"); // логин
         connectSqlServer.setPassword("root");// пороль
-        connectSqlServer.setselectedTable("warehouse");// выброная таблицы с которой будем работатьa
+        connectSqlServer.setselectedTable("warehouse");// выбранная таблицы с которой будем работать
         connectSqlServer.mySqlRun(); //запускает скл с указанными данными
 
         //MethotsForTableWareHouse.checkKod();
@@ -35,13 +34,12 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxmlFile/sample.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("СуперМаркет");
         stage.setScene(scene);
         stage.show();
-
     }
 
 }
